@@ -22,7 +22,7 @@ import k4unl.minecraft.doubleJump.proxy.CommonProxy;
 	modid = ModInfo.ID,
 	name = ModInfo.NAME,
 	version = ModInfo.VERSION,
-    dependencies = "required-after:k4lib@[0.1.12,)"
+    dependencies = "required-after:k4lib@[0.1.13,)"
 )
 public class DoubleJump {
 

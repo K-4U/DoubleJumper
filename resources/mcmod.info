@@ -1,0 +1,13 @@
+[
+    {
+        "modid":        "doubleJump",
+        "name":         "DoubleJump",
+        "description":  "Double jump on command!",
+        "version":      "${version}",
+        "mcversion":    "$mcversion",
+        "authorList":   [
+            "K4Unl",
+        ]
+    }
+]       
+        
