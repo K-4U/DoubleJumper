@@ -22,7 +22,7 @@ import k4unl.minecraft.k4lib.lib.config.ConfigHandler;
 	modid = ModInfo.ID,
 	name = ModInfo.NAME,
 	version = ModInfo.VERSION,
-    dependencies = "required-after:k4lib"
+    dependencies = "required-after:k4Lib@[1.7.10-0.1.14,)"
 )
 public class DoubleJump {
 
