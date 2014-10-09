@@ -11,11 +11,11 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import k4unl.minecraft.doubleJump.events.EventHelper;
 import k4unl.minecraft.doubleJump.events.TickHandler;
 import k4unl.minecraft.doubleJump.lib.Log;
-import k4unl.minecraft.doubleJump.lib.config.ConfigHandler;
 import k4unl.minecraft.doubleJump.lib.config.DJConfig;
 import k4unl.minecraft.doubleJump.lib.config.ModInfo;
 import k4unl.minecraft.doubleJump.network.DJNetworkHandler;
 import k4unl.minecraft.doubleJump.proxy.CommonProxy;
+import k4unl.minecraft.k4lib.lib.config.ConfigHandler;
 
 
 @Mod(
@@ -35,13 +35,14 @@ public class DoubleJump {
     )
     public static CommonProxy proxy;
 
+    public static ConfigHandler configHandler = new ConfigHandler();
 
     @EventHandler
-    public void preInit(FMLPreInitializationEvent event){
+    public void preInit(FMLPreInitializationEvent event) {
 
         Log.init();
         DJConfig.INSTANCE.init();
-        ConfigHandler.init(DJConfig.INSTANCE, event.getSuggestedConfigurationFile());
+        configHandler.init(DJConfig.INSTANCE, event.getSuggestedConfigurationFile());
     }
 
     @EventHandler
