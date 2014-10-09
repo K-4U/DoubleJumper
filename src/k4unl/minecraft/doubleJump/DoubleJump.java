@@ -12,6 +12,7 @@ import k4unl.minecraft.doubleJump.events.EventHelper;
 import k4unl.minecraft.doubleJump.events.TickHandler;
 import k4unl.minecraft.doubleJump.lib.Log;
 import k4unl.minecraft.doubleJump.lib.config.ConfigHandler;
+import k4unl.minecraft.doubleJump.lib.config.DJConfig;
 import k4unl.minecraft.doubleJump.lib.config.ModInfo;
 import k4unl.minecraft.doubleJump.network.DJNetworkHandler;
 import k4unl.minecraft.doubleJump.proxy.CommonProxy;
@@ -21,7 +22,7 @@ import k4unl.minecraft.doubleJump.proxy.CommonProxy;
 	modid = ModInfo.ID,
 	name = ModInfo.NAME,
 	version = ModInfo.VERSION,
-    dependencies = "require-after:k4lib@[0.1.12,)"
+    dependencies = "required-after:k4lib@[0.1.12,)"
 )
 public class DoubleJump {
 
@@ -34,11 +35,13 @@ public class DoubleJump {
     )
     public static CommonProxy proxy;
 
+
     @EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
+    public void preInit(FMLPreInitializationEvent event){
 
         Log.init();
-        ConfigHandler.init(event.getSuggestedConfigurationFile());
+        DJConfig.INSTANCE.init();
+        ConfigHandler.init(DJConfig.INSTANCE, event.getSuggestedConfigurationFile());
     }
 
     @EventHandler

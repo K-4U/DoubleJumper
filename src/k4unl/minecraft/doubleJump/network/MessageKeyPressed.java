@@ -45,7 +45,7 @@ public class MessageKeyPressed extends AbstractPacket<MessageKeyPressed> {
             case 0:
                 NBTTagCompound tCompound = player.getEntityData();
                 if(tCompound.hasKey("hasJumped")) {
-                    if (player.motionY < 0.4 && tCompound.getInteger("hasJumped") < DJConfig.getInt("maxJumps")) {
+                    if (player.motionY < 0.4 && tCompound.getInteger("hasJumped") < DJConfig.INSTANCE.getInt("maxJumps")) {
                         player.jump();
                         player.motionY += 0.03D;
                         player.velocityChanged = true;
