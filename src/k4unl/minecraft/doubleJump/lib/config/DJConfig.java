@@ -11,5 +11,6 @@ public class DJConfig extends Config{
     public void init() {
 
         configOptions.add(new ConfigOption("maxJumps", 2));
+        configOptions.add(new ConfigOption("jumpBoost", 0.15D).setComment("0.2D is about a half block"));
     }
 }

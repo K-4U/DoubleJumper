@@ -47,7 +47,7 @@ public class MessageKeyPressed extends AbstractPacket<MessageKeyPressed> {
                 if(tCompound.hasKey("hasJumped")) {
                     if (player.motionY < 0.4 && tCompound.getInteger("hasJumped") < DJConfig.INSTANCE.getInt("maxJumps")) {
                         player.jump();
-                        player.motionY += 0.03D;
+                        player.motionY += DJConfig.INSTANCE.getDouble("jumpBoost");
                         player.velocityChanged = true;
                     }
                 }
