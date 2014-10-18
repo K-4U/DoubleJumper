@@ -17,7 +17,6 @@ import k4unl.minecraft.doubleJump.network.DJNetworkHandler;
 import k4unl.minecraft.doubleJump.proxy.CommonProxy;
 import k4unl.minecraft.k4lib.lib.config.ConfigHandler;
 
-
 @Mod(
 	modid = ModInfo.ID,
 	name = ModInfo.NAME,

@@ -4,6 +4,7 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent.KeyInputEvent;
+import k4unl.minecraft.doubleJump.lib.config.DJConfig;
 import k4unl.minecraft.doubleJump.network.DJNetworkHandler;
 import k4unl.minecraft.doubleJump.network.MessageKeyPressed;
 import net.minecraft.client.Minecraft;
@@ -11,7 +12,9 @@ import net.minecraft.client.gui.GuiChat;
 
 public class KeyHandler {
 	public static void init(){
-		FMLCommonHandler.instance().bus().register(new KeyHandler());
+        if(!DJConfig.INSTANCE.getBool("disable")) {
+            FMLCommonHandler.instance().bus().register(new KeyHandler());
+        }
 	}
 	
 	@SubscribeEvent
