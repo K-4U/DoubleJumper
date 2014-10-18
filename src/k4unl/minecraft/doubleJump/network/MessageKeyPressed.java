@@ -12,6 +12,9 @@ import k4unl.minecraft.doubleJump.lib.config.DJConfig;
 import k4unl.minecraft.k4lib.network.messages.AbstractPacket;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
+import net.minecraft.util.MathHelper;
+import net.minecraftforge.common.ForgeHooks;
 
 public class MessageKeyPressed extends AbstractPacket<MessageKeyPressed> {
     private int keyIndex;
@@ -46,7 +49,26 @@ public class MessageKeyPressed extends AbstractPacket<MessageKeyPressed> {
                 NBTTagCompound tCompound = player.getEntityData();
                 if(tCompound.hasKey("hasJumped")) {
                     if (player.motionY < 0.4 && tCompound.getInteger("hasJumped") < DJConfig.INSTANCE.getInt("maxJumps")) {
-                        player.jump();
+                        if(DJConfig.INSTANCE.getBool("secondJumpUsesHunger")) {
+                            player.jump();
+                        }else{
+                            player.motionY = 0.41999998688697815D;
+
+                            if (player.isPotionActive(Potion.jump))
+                            {
+                                player.motionY += (double)((float)(player.getActivePotionEffect(Potion.jump).getAmplifier() + 1) * 0.1F);
+                            }
+
+                            if (player.isSprinting())
+                            {
+                                float f = player.rotationYaw * 0.017453292F;
+                                player.motionX -= (double)(MathHelper.sin(f) * 0.2F);
+                                player.motionZ += (double)(MathHelper.cos(f) * 0.2F);
+                            }
+
+                            player.isAirBorne = true;
+                            ForgeHooks.onLivingJump(player);
+                        }
                         player.motionY += DJConfig.INSTANCE.getDouble("jumpBoost");
                         player.velocityChanged = true;
                     }

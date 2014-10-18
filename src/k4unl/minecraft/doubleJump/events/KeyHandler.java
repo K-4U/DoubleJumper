@@ -6,6 +6,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent.KeyInputEvent;
 import k4unl.minecraft.doubleJump.network.DJNetworkHandler;
 import k4unl.minecraft.doubleJump.network.MessageKeyPressed;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiChat;
 
 public class KeyHandler {
@@ -17,7 +18,9 @@ public class KeyHandler {
 	public void onKeyInput(KeyInputEvent event) {
 		if (!FMLClientHandler.instance().isGUIOpen(GuiChat.class)) {
 			if(FMLClientHandler.instance().getClient().gameSettings.keyBindJump.getIsKeyPressed()){
-                DJNetworkHandler.sendToServer(new MessageKeyPressed(0));
+                if(Minecraft.getMinecraft().thePlayer.motionY < 0.04 && Minecraft.getMinecraft().thePlayer.isAirBorne) {
+                    DJNetworkHandler.sendToServer(new MessageKeyPressed(0));
+                }
             }
 		}
 	}
