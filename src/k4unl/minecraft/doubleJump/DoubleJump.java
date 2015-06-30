@@ -1,6 +1,5 @@
 package k4unl.minecraft.doubleJump;
 
-
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -8,6 +7,8 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import k4unl.minecraft.doubleJump.commands.Commands;
 import k4unl.minecraft.doubleJump.events.EventHelper;
 import k4unl.minecraft.doubleJump.events.TickHandler;
 import k4unl.minecraft.doubleJump.lib.Log;
@@ -47,6 +48,7 @@ public class DoubleJump {
     @EventHandler
     public void load(FMLInitializationEvent event) {
 
+        
         TickHandler.init();
         EventHelper.init();
         DJNetworkHandler.init();
@@ -57,5 +59,11 @@ public class DoubleJump {
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
 
+    }
+
+    @Mod.EventHandler
+    public void onServerStart(FMLServerStartingEvent event) {
+
+        Commands.init(event);
     }
 }

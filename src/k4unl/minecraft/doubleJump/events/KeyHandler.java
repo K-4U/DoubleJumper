@@ -19,12 +19,15 @@ public class KeyHandler {
 	
 	@SubscribeEvent
 	public void onKeyInput(KeyInputEvent event) {
+
 		if (!FMLClientHandler.instance().isGUIOpen(GuiChat.class)) {
-			if(FMLClientHandler.instance().getClient().gameSettings.keyBindJump.getIsKeyPressed()){
-                if(Minecraft.getMinecraft().thePlayer.motionY < 0.04 && Minecraft.getMinecraft().thePlayer.isAirBorne) {
-                    DJNetworkHandler.sendToServer(new MessageKeyPressed(0));
-                }
-            }
+			if (FMLClientHandler.instance().getClient().gameSettings.keyBindJump.getIsKeyPressed()) {
+				if(!DJConfig.INSTANCE.getBool("disabled")) {
+					if (Minecraft.getMinecraft().thePlayer.motionY < 0.04 && Minecraft.getMinecraft().thePlayer.isAirBorne) {
+						DJNetworkHandler.sendToServer(new MessageKeyPressed(0));
+					}
+				}
+			}
 		}
 	}
 }
